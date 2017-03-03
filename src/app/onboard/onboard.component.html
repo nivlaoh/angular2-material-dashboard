@@ -1,0 +1,44 @@
+<div class="app-content">
+	<div class="flex-container" fxLayout="row" fxLayoutAlign="center center">
+		<div fxFlex fxFlexAlign="center">
+			<md-card class="login-card">
+				<md-card-header>
+					<md-card-title>User Records</md-card-title>
+				</md-card-header>
+				<md-card-content>
+					<form [formGroup]="userForm" (ngSubmit)="goCustomerPage()">
+						<div fxLayout="column" fxLayoutAlign="center center">
+							<div fxFlex="2">
+								<md-input-container>
+									<input type="text" name="searchField" id="searchField" placeholder="NRIC or customer name" size="30" formControlName="searchField" mdInput>
+									<md-hint *ngIf="userForm.controls['searchField'].dirty && !isLoading && users.length<1" align="start" style="color: red">
+										No users found
+									</md-hint>
+								</md-input-container>
+								<button type="submit" md-icon-button color="accent">
+									<md-icon>check</md-icon>
+								</button>
+							</div>
+							<div fxFlex="1" *ngIf="isLoading">
+								<md-spinner style="width: 40px" color="accent"></md-spinner>
+							</div>
+							<div fxFlex="1" *ngIf="users.length>=1">
+								<md-list>
+									<h3 md-subheader>Results</h3>
+									<md-divider></md-divider>
+									<md-list-item *ngFor="let user of users">
+										<a [routerLink]="['/onboard/new', {nric: user.nric}]">
+											<md-icon fontSet="fa" fontIcon="fa-user"></md-icon>
+											<span>{{ user.firstName }}</span>
+										</a>
+									</md-list-item>
+								</md-list>
+							</div>
+							
+						</div>
+					</form>
+				</md-card-content>
+			</md-card>
+		</div>
+	</div>
+</div>

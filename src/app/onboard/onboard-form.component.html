@@ -1,0 +1,106 @@
+<div class="app-content">
+	<h2>
+		<md-icon color="primary">person_pin</md-icon>
+		<span class="app-title"> Create New User</span>
+	</h2>
+	<form [formGroup]="userForm" (ngSubmit)="createUser(userForm)">
+		<div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px"
+			fxLayoutAlign="center center" fxLayoutAlign.xs="center stretch">
+			<div class="flex-item" fxFlex>
+				<md-card class="newuser-card">
+					<md-card-header>
+						<md-card-title>
+							<b> Basic Details</b>
+						</md-card-title>
+					</md-card-header>
+					<md-card-content>
+						<md-input-container>
+							<input type="text" name="nric" id="nric" formControlName="nric" placeholder="NRIC" mdInput>
+						</md-input-container>
+						<div>
+							<md-input-container>
+								<input type="text" name="firstName" id="firstName" formControlName="firstName" placeholder="First Name" required mdInput>
+							</md-input-container>
+							<md-input-container>
+								<input type="text" name="middleName" id="middleName" formControlName="middleName" placeholder="Middle Name" mdInput>
+							</md-input-container>
+							<md-input-container>
+								<input type="text" name="lastName" id="lastName" formControlName="lastName" placeholder="Last Name" required mdInput>
+							</md-input-container>
+							<md-input-container>
+								<input type="email" name="email" id="email" formControlName="email" placeholder="Email" required mdInput>
+							</md-input-container>
+						</div>
+						<div>
+							<md-radio-group name="gender" id="gender" formControlName="gender">
+								<md-radio-button value="male">Male</md-radio-button>&nbsp;
+								<md-radio-button value="female">Female</md-radio-button>
+							</md-radio-group>
+						</div>
+						<p>
+							<md-checkbox name="isStaff" id="isStaff" formControlName="isStaff">Staff</md-checkbox> &nbsp;
+							<md-input-container>
+								<input type="text" name="staffPin" id="staffPin" placeholder="Staff PIN" formControlName="staffPin" mdInput>
+								<md-hint *ngIf="userForm.invalid && userForm.controls['staffPin'].errors" class="red">
+									Staff PIN is required.
+								</md-hint>
+							</md-input-container>
+						</p>
+						<p>
+							Where did you hear about us? 
+							<md-select placeholder="Source" name="source" id="source" formControlName="source">
+								<md-option *ngFor="let source of sources" [value]="source.code">{{source.description}}</md-option>
+							</md-select>
+						</p>
+						<md-input-container>
+							<input type="text" name="address" id="address" formControlName="address" placeholder="Address of Residence" size="40" required mdInput>
+							<md-hint *ngIf="userForm.controls['address'].dirty && userForm.hasError('minLength', 'address')" [ngStyle]="{'color': 'red'}">
+								Address is too short
+							</md-hint>
+						</md-input-container>
+						<p>
+							<md-select placeholder="Country of Residence" name="country" id="country" formControlName="country">
+								<md-option *ngFor="let country of countries" [value]="country.alpha2Code">{{country.name}}</md-option>
+							</md-select>
+						</p>
+					</md-card-content>
+					<md-card-actions>
+						<button type="submit" md-button>Create</button>
+						<button type="reset" md-button (click)="resetForm()">Reset</button>
+						<!-- <button type="button" md-button (click)="restoreSignature()">Restore</button> -->
+					</md-card-actions>
+				</md-card>
+			</div>
+			<div class="flex-item" fxFlex>
+				<md-card class="newuser-card">
+					<md-card-header>
+						<md-card-title>
+							<b> Biographic Details</b>
+						</md-card-title>
+					</md-card-header>
+					<md-card-content>
+						<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center center">
+							<div fxFlex>
+								<span>Click on the Camera button to take photo</span>
+								<md-hint *ngIf="userForm.invalid && userForm.controls['profilePhoto'].errors" class="red">
+									A photo is required.
+								</md-hint>
+								<div class="camera-overlay">
+									<canvas id="photoCanvas" class="profile-photo"></canvas>
+									<button type="button" class="overlay-btn" md-mini-fab (click)="showCam()" color="accent" mdTooltip="Click to take photo">
+										<md-icon>camera_alt</md-icon>
+									</button>
+								</div>
+							</div>
+							<div fxFlex>
+								<signature-pad id="signature" class="signature" [options]="signaturePadOptions"></signature-pad>
+								<div class="signature-instruction">Sign above the line</div>
+								<button type="button" md-raised-button color="accent" (click)="clearSignature()">Clear signature</button>
+							</div>
+						</div>
+					</md-card-content>
+				</md-card>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,46 @@
+<div class="app-content">
+	<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px" style="height: 100%">
+		<div fxFlex fxFlexAlign="center">
+			<md-card class="login-card">
+				<md-card-header>
+					<md-card-title>
+						<md-icon>supervisor_account</md-icon>
+						<span> Admin Login</span>
+					</md-card-title>
+				</md-card-header>
+				<md-card-content>
+					<form [formGroup]="loginForm" (ngSubmit)="login()">
+						<div fxLayout="column">
+							<div fxFlex>
+								<md-input-container>
+									<input type="text" name="username" placeholder="Username" formControlName="username" size="40" required mdInput>
+									<md-hint *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')" [ngStyle]="{'color': 'red'}" align="start">
+										Username required
+									</md-hint>
+								</md-input-container>
+							</div>
+							<div fxFlex>
+								<md-input-container>
+									<input type="password" name="password" placeholder="Password" formControlName="password" size="40" required mdInput>
+									<md-hint *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" [ngStyle]="{'color': 'red'}">
+										Password required
+									</md-hint>
+								</md-input-container>
+							</div>
+							<div fxFlex>
+								<button type="submit" md-raised-button color="accent">
+									<md-icon>check</md-icon>
+									<span> Login</span>
+								</button>
+							</div>
+							<!-- <div fxFlex>
+								<div class="divider"></div>
+								<span>Or <a routerLink="/register">create new account</a></span>
+							</div> -->
+						</div>
+					</form>
+				</md-card-content>
+			</md-card>
+		</div>
+	</div>
+</div>

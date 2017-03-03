@@ -1,0 +1,14 @@
+$toolbar-height: 56px;
+
+.toolbar-container {
+	position: fixed;
+	color: white;
+	z-index: 500;
+}
+.mat-sidenav {
+	margin-top: 48px;
+}
+.route-view {
+	margin-top: $toolbar-height;
+	height: calc(100% - 56px);
+}

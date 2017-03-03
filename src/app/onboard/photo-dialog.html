@@ -1,0 +1,10 @@
+<h1 md-dialog-title>Take Photo</h1>
+<md-dialog-content>
+	<div>Please enable permissions to use camera in the browser to take a photo.</div>
+	<p> </p>
+	<video [src]="videosrc" class="cssWebCam"></video>
+</md-dialog-content>
+<md-dialog-actions>
+	<button type="button" md-button (click)="takePhoto()" color="accent">Take Photo</button>
+	<button type="button" md-button (click)="stopCam()">Cancel</button>
+</md-dialog-actions>
