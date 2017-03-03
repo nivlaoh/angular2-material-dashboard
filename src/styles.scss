@@ -24,11 +24,12 @@ html, body, md-sidenav-container, .my-content {
 	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 body {
-	background: url(assets/gymbg.jpg) no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	background: #eeeeee;
+	// background: url(assets/gymbg.jpg) no-repeat center center fixed;
+	// -webkit-background-size: cover;
+	// -moz-background-size: cover;
+	// -o-background-size: cover;
+	// background-size: cover;
 	box-sizing: border-box;
 }
 a {
@@ -44,6 +45,9 @@ a {
 	&:focus {
 		outline: 0;
 	}
+}
+.push-right {
+	flex: 1 1 auto;
 }
 .mat-sidenav-container {
 	background: none;
