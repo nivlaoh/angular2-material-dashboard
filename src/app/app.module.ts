@@ -15,12 +15,14 @@ import { AuthModule } from './shared/auth/auth.module';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuardService } from './shared/auth/auth-guard.service';
 import { UserService } from './shared/user/user.service';
+import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { VerifyModule } from './verify/verify.module';
 import { OnboardModule } from './onboard/onboard.module';
 import { LoginModule } from './login/login.module';
 import { VerifyComponent } from './verify/verify.component';
 import { CapitalizePipe } from './shared/utils/capitalize.pipe';
+import { HomeComponent } from './home/home.component';
 
 const localStorageConfig = {
   prefix: 'app.'
@@ -28,24 +30,25 @@ const localStorageConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    WebStorageModule,
     HttpModule,
     AuthModule,
     RouterModule.forRoot(appRoutes),
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
     SharedModule.forRoot(),
+    HomeModule,
     LoginModule,
     VerifyModule,
     OnboardModule
   ],
-  providers: [AuthService, AuthGuardService, UserService, BROWSER_STORAGE_PROVIDERS, ConfigureStorage(localStorageConfig)],
+  providers: [AuthService, AuthGuardService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

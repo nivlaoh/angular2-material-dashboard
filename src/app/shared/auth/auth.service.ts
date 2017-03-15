@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { AuthHttp, JwtHelper } from 'angular2-jwt';
-import { LocalStorage } from 'h5webstorage';
+// import { LocalStorage } from 'h5webstorage';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
 import { environment } from '../../../environments/environment';
 import { User } from '../user/user';
+
+declare var localStorage: any;
 
 @Injectable()
 export class AuthService {
@@ -15,16 +17,15 @@ export class AuthService {
 	private currentUser: User;
 
 	constructor(private http: Http,
-		private authHttp: AuthHttp,
-		private localStorage: LocalStorage) {
+		private authHttp: AuthHttp) {
 		this.jwtHelper = new JwtHelper();
 		this.init();
 	}
 
 	init() {
-    	let token = this.localStorage.getItem('id_token');
-    	if (typeof token !== 'undefined' && !this.jwtHelper.isTokenExpired(token)) {
-    	//if (token !== null && !this.jwtHelper.isTokenExpired(token)) {
+    	let token = localStorage.getItem('id_token');
+    	//if (typeof token !== 'undefined' && !this.jwtHelper.isTokenExpired(token)) {
+    	if (token !== null && !this.jwtHelper.isTokenExpired(token)) {
     		let user = this.jwtHelper.decodeToken(token);
     		this.currentUser = new User(user.username, user.name, user.roles);
     	}
@@ -50,7 +51,7 @@ export class AuthService {
 				if (found) {
 					//this._isLoggedIn = true;
 					// mock login token
-					this.localStorage.setItem('id_token', mockToken);
+					localStorage.setItem('id_token', mockToken);
 
 					// unmarshall dummy token to currentUser object
 					this.currentUser = this.convertPayloadToUser(this.jwtHelper.decodeToken(mockToken));
@@ -66,19 +67,18 @@ export class AuthService {
 	}
 
 	logout(): boolean {
-  		this.localStorage.removeItem('id_token');
+  		localStorage.removeItem('id_token');
     	//this._isLoggedIn = false;
 		return true;
 	}
 
 	isLoggedIn(): boolean {
-		let token = this.localStorage.getItem('id_token');
-		if (typeof token !== 'undefined' && !this.jwtHelper.isTokenExpired(token)) return true;
-		//if (token !== null)
-		//	console.log('token expiry', this.jwtHelper.getTokenExpirationDate(token));
+		let token = localStorage.getItem('id_token');
+		if (token !== null)
+			console.log('token expiry', this.jwtHelper.getTokenExpirationDate(token));
 
-		if (typeof token !== 'undefined' && !this.jwtHelper.isTokenExpired(token)) {
-		//if (token !== null && !this.jwtHelper.isTokenExpired(token)) {
+		//if (typeof token !== 'undefined' && !this.jwtHelper.isTokenExpired(token)) {
+		if (token !== null && !this.jwtHelper.isTokenExpired(token)) {
 			this.currentUser = this.convertPayloadToUser(this.jwtHelper.decodeToken(token));
 			return true;
 		}

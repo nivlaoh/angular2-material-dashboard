@@ -2,14 +2,16 @@
 //@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
 @import '~@angular/material/core/theming/all-theme';
 @include mat-core();
-$candy-app-primary: mat-palette($mat-orange);
-$candy-app-accent:  mat-palette($mat-light-blue);
-$candy-app-warn:    mat-palette($mat-red);
-$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
-@include angular-material-theme($candy-app-theme);
+
+$app-primary: mat-palette($mat-orange);
+// $app-primary: mat-color(#c1dbf1);
+$app-accent:  mat-palette($mat-light-blue);
+$app-warn:    mat-palette($mat-red);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+@include angular-material-theme($app-theme);
 
 .red {
-    color: mat-color($candy-app-warn, 500, 1);
+    color: mat-color($app-warn, 500, 1);
 }
 .warn {
    color: mat-color(mat-palette($mat-yellow));
@@ -72,6 +74,15 @@ app-login, app-onboard, app-verify {
 	flex-grow: 1;
 	flex-shrink: 0;
 	position: relative;
+}
+.header-icon {
+	width: 3em;
+	height: 3em;
+	background-color: purple;
+	position: absolute;
+	top: -1em;
+	left: 1em;
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
 }
 .flex-container {
 	margin: auto;
