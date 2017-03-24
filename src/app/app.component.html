@@ -18,7 +18,19 @@
 			<md-list-item (click)="sidebar.toggle()">
 				<a routerLink="/">
 					<md-icon fontSet="fa" fontIcon="fa-home"></md-icon>
-					<span> Home</span>
+					<span> Dashboard</span>
+				</a>
+			</md-list-item>
+			<md-list-item (click)="sidebar.toggle()">
+				<a routerLink="/maps">
+					<md-icon fontSet="fa" fontIcon="fa-map-marker"></md-icon>
+					<span> Maps</span>
+				</a>
+			</md-list-item>
+			<md-list-item (click)="sidebar.toggle()">
+				<a routerLink="/tables">
+					<md-icon fontSet="fa" fontIcon="fa-table"></md-icon>
+					<span> Tables</span>
 				</a>
 			</md-list-item>
 			<md-list-item (click)="sidebar.toggle()">

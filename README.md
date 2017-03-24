@@ -7,6 +7,10 @@ This project is using:
 - h5webstorage
 - font-awesome
 
+Using the credentials to login:
+Username: angular
+Password: test
+
 ## Run
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 

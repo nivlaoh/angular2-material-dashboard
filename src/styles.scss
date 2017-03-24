@@ -13,8 +13,11 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 .red {
     color: mat-color($app-warn, 500, 1);
 }
+.red-bg {
+	background-color: red !important;
+}
 .warn {
-   color: mat-color(mat-palette($mat-yellow));
+	color: mat-color(mat-palette($mat-yellow));
 }
 * {
 	box-sizing: border-box;
@@ -58,7 +61,7 @@ app-login, app-onboard, app-verify {
 	//height: 100%;
 	display: flex;
 	flex-direction: column;
-	min-height: calc(100% - 56px);
+	min-height: calc(100% - 64px);
 }
 .app-title {
 	color: white;
@@ -76,13 +79,13 @@ app-login, app-onboard, app-verify {
 	position: relative;
 }
 .header-icon {
-	width: 3em;
-	height: 3em;
+	width: 5em;
+	height: 5em;
 	background-color: purple;
 	position: absolute;
-	top: -1em;
+	top: -0.6em;
 	left: 1em;
-	box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
+	box-shadow: 1px 3px 15px rgba(0,0,0,0.4);
 }
 .flex-container {
 	margin: auto;
@@ -95,6 +98,7 @@ app-login, app-onboard, app-verify {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+.mat-card {}
 .login-card {
 	max-width: 350px;
 	margin: auto;
@@ -106,12 +110,8 @@ md-icon.fa {
 	}
 }
 md-toolbar {
-	min-height: 56px !important;
-	//box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
-	box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
-	md-toolbar-row {
-		height: 56px !important;
-	}
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+	//box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 }
 md-sidenav {
 	width: 200px;

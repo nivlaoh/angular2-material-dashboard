@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
-import { BROWSER_STORAGE_PROVIDERS, ConfigureStorage, WebStorageModule } from 'h5webstorage';
+import { Ng2Webstorage } from 'ng2-webstorage';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -23,10 +23,8 @@ import { LoginModule } from './login/login.module';
 import { VerifyComponent } from './verify/verify.component';
 import { CapitalizePipe } from './shared/utils/capitalize.pipe';
 import { HomeComponent } from './home/home.component';
-
-const localStorageConfig = {
-  prefix: 'app.'
-};
+import { MapsModule } from './maps/maps.module';
+import { TablesModule } from './tables/tables.module';
 
 @NgModule({
   declarations: [
@@ -39,14 +37,17 @@ const localStorageConfig = {
     ReactiveFormsModule,
     HttpModule,
     AuthModule,
+    Ng2Webstorage.forRoot({ prefix: 'app', separator: '.' }),
     RouterModule.forRoot(appRoutes),
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
     SharedModule.forRoot(),
     HomeModule,
     LoginModule,
+    MapsModule,
     VerifyModule,
-    OnboardModule
+    OnboardModule,
+    TablesModule
   ],
   providers: [AuthService, AuthGuardService, UserService],
   bootstrap: [AppComponent]

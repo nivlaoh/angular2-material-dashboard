@@ -6,9 +6,9 @@ $toolbar-height: 56px;
 	z-index: 500;
 }
 .mat-sidenav {
-	margin-top: 48px;
+	margin-top: 64px;
 }
 .route-view {
 	margin-top: $toolbar-height;
-	height: calc(100% - 56px);
+	height: calc(100% - 64px);
 }

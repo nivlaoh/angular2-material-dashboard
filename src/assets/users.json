@@ -1,15 +1,13 @@
 [
 	{
-		"username": "alvin",
+		"username": "angular",
 		"password": "test",
 		"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJbnZlc3Rmb3JnZSIsImlhdCI6MTQ3NDk2NDY3OSwiZXhwIjoxNTA2NTAwNjc5LCJhdWQiOiJhbHZpbiIsInN1YiI6ImFsdmluIiwidXNlcm5hbWUiOiJhbHZpbiIsIm5hbWUiOiJBbHZpbiIsImVtYWlsIjoiYWx2aW4uaG9AbGVvbnRlcS5jb20iLCJyb2xlcyI6WyJJTlZFU1RfVVNFUiIsIklOVkVTVF9NQU5BR0VSIl19.Tr8PJbTeCCAHpaLuii2NtbOHhVR25GY5hdFnZg3kCws",
-		"firstName": "Alvin",
-		"lastName": "Ho",
-		"name": "Alvin Ho",
-		"email": "aa@aa.com",
-		"nric": "S1234567A",
+		"firstName": "Angular",
+		"lastName": "2",
+		"name": "Angular 2",
+		"email": "test@aa.com",
 		"gender": "male",
-		"isStaff": true,
 		"address": "Singapore",
 		"country": "SG"
 	}

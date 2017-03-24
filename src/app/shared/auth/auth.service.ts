@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { AuthHttp, JwtHelper } from 'angular2-jwt';
-// import { LocalStorage } from 'h5webstorage';
+import { LocalStorageService } from 'ng2-webstorage';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
@@ -17,13 +17,16 @@ export class AuthService {
 	private currentUser: User;
 
 	constructor(private http: Http,
+		private localStorage: LocalStorageService,
 		private authHttp: AuthHttp) {
 		this.jwtHelper = new JwtHelper();
 		this.init();
 	}
 
 	init() {
-    	let token = localStorage.getItem('id_token');
+    	// let token = localStorage.getItem('id_token');
+    	let token = this.localStorage.retrieve('id_token');
+    	
     	//if (typeof token !== 'undefined' && !this.jwtHelper.isTokenExpired(token)) {
     	if (token !== null && !this.jwtHelper.isTokenExpired(token)) {
     		let user = this.jwtHelper.decodeToken(token);
@@ -51,7 +54,8 @@ export class AuthService {
 				if (found) {
 					//this._isLoggedIn = true;
 					// mock login token
-					localStorage.setItem('id_token', mockToken);
+					// localStorage.setItem('id_token', mockToken);
+					this.localStorage.store('id_token', mockToken);
 
 					// unmarshall dummy token to currentUser object
 					this.currentUser = this.convertPayloadToUser(this.jwtHelper.decodeToken(mockToken));
@@ -67,13 +71,15 @@ export class AuthService {
 	}
 
 	logout(): boolean {
-  		localStorage.removeItem('id_token');
+  		// localStorage.removeItem('id_token');
+  		this.localStorage.clear('id_token');
     	//this._isLoggedIn = false;
 		return true;
 	}
 
 	isLoggedIn(): boolean {
-		let token = localStorage.getItem('id_token');
+		// let token = localStorage.getItem('id_token');
+		let token = this.localStorage.retrieve('id_token');
 		if (token !== null)
 			console.log('token expiry', this.jwtHelper.getTokenExpirationDate(token));
 
@@ -100,9 +106,9 @@ export class AuthService {
 
 	convertPayloadToUser(payload: any) {
 	    let user: User = new User();
-	    //user.firstname = payload.firstname;
-	    //user.lastname = payload.lastname;
-	    //user.email = payload.email;
+	    user.firstName = payload.firstname;
+	    user.lastName = payload.lastname;
+	    user.email = payload.email;
 	    user.name = payload.name;
 	    user.user = payload.sub;
 	    user.roles = payload.roles;
